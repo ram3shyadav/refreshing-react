@@ -38,7 +38,7 @@ const Header = () => {
 				<nav className={`${isMenuOpen ? '' : 'hidden'} items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar-sticky`}>
 					<ul className="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
 						<li>
-							<NavLink to="/" className={(isActive) => isActive ? 'block py-2 px-4 text-white font-bold no-underline' : 'block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4'} aria-current="page" exact>Home</NavLink>
+							<NavLink to="/" className={(isActive) => isActive ? 'block py-2 px-4 text-white font-bold no-underline' : 'block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4'} aria-current="page" exact={true}>Home</NavLink>
 						</li>
 						<li>
 							<NavLink to="/todo" className={(isActive) => isActive ? 'block py-2 px-4 text-white font-bold no-underline' : 'block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4'} >ToDo</NavLink>

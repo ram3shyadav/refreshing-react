@@ -14,7 +14,12 @@
       "openFiles": [
         "src/App.tsx"
       ]
-    }
+	},
+	"vscode": {
+		"extensions": [
+			"EditorConfig.EditorConfig"
+		]
+	}
   },
   "portsAttributes": {
     "3000": {

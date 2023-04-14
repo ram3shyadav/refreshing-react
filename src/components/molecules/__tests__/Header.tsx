@@ -30,7 +30,8 @@ test('navigation to about page', async () => {
 	const history = createMemoryHistory();
 	const { container } = render(
 		<Header />,
-		{ wrapper: createRouterWrapper(history) });
+		{ wrapper: createRouterWrapper(history) }
+	);
 	fireEvent.click(container.querySelectorAll('nav a')[1]);
 	await waitFor(() => {
 		expect(history.location.pathname).toBe('/about');
