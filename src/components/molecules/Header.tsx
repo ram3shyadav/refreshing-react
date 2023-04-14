@@ -41,6 +41,9 @@ const Header = () => {
 							<NavLink to="/" className={(isActive) => isActive ? 'block py-2 px-4 text-white font-bold no-underline' : 'block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4'} aria-current="page" exact>Home</NavLink>
 						</li>
 						<li>
+							<NavLink to="/todo" className={(isActive) => isActive ? 'block py-2 px-4 text-white font-bold no-underline' : 'block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4'} >ToDo</NavLink>
+						</li>
+						<li>
 							<NavLink to="/about" className={(isActive) => isActive ? 'block py-2 px-4 text-white font-bold no-underline' : 'block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4'} >About</NavLink>
 						</li>
 					</ul>

@@ -1,0 +1,143 @@
+import { Action } from "redux";
+import {
+	ADD_TODO,
+	DELETE_TODO,
+	CLEAR_ALL_TODO,
+	EDIT_TODO,
+	UPDATE_TODO,
+	MARK_COMPLETED,
+} from "./todo.constant";
+
+export interface ToDoItem {
+	id: number,
+	title: string,
+	description: string,
+	isCompleted: boolean,
+	isPending: boolean,
+}
+
+const initialState: {
+	todos: ToDoItem[],
+	[key: string]: any
+} = {
+	todos: [
+		{
+			id: 1,
+			title: "TodoList 1",
+			description: "This is first todo",
+			isCompleted: true,
+			isPending: false,
+		},
+		{
+			id: 2,
+			title: "TodoList 2",
+			description: "This is second todo",
+			isCompleted: false,
+			isPending: true,
+		},
+		{
+			id: 3,
+			title: "TodoList 3",
+			description: "This is third todo",
+			isCompleted: false,
+			isPending: true,
+		},
+	],
+	isEdit: false,
+	editTodoId: "",
+};
+
+const todoReducer = (state = initialState, action: Action & {
+	[key: string]: any
+}) => {
+	switch (action.type) {
+		case ADD_TODO:
+			const { id, title, description } = action.payload;
+			return {
+				...state,
+				todos: [
+					...state.todos,
+					{
+						id: id,
+						title: title,
+						description: description,
+						isCompleted: false,
+						isPending: true,
+					},
+				],
+				isEdit: action.isEdit,
+			};
+		case DELETE_TODO:
+			const newTodoList = state.todos.filter((item) => item.id != action.id);
+			return {
+				...state,
+				todos: newTodoList,
+			};
+
+		case EDIT_TODO:
+			const editTodo = action.payload;
+			let newEditTodo = state?.todos?.find((item) => item?.id === editTodo?.id);
+			return {
+				...state,
+				isEdit: action.isEdit,
+				editTodo: newEditTodo,
+			};
+
+		case UPDATE_TODO:
+			const { todoId, todoTitle, todoDescription } = action.payload;
+			const todos = state.todos.filter((todo) => {
+				return todo.id !== todoId;
+			});
+
+			const todo = state.todos.find((todo) => todo?.id === todoId);
+			if (todo) {
+				todo.title = todoTitle;
+				todo.description = todoDescription;
+				todo.isCompleted = !!todo?.isCompleted;
+				todo.isPending = !!todo?.isPending;
+				todos.push(todo);
+			}
+
+			return {
+				...state,
+				todos: [...todos],
+				isEdit: false,
+			};
+
+		case MARK_COMPLETED:
+			const { selectedTodoId } = action.payload;
+			let allTodos: ToDoItem[] = [];
+
+
+			selectedTodoId.forEach((id: number) => {
+				allTodos = state.todos.filter((todo) => {
+					return todo.id !== id;
+				});
+
+				const selectedTodo: ToDoItem | undefined = state.todos.find((todo) => todo?.id === id);
+				if (selectedTodo) {
+					selectedTodo.title = selectedTodo?.title;
+					selectedTodo.description = selectedTodo?.description;
+					selectedTodo.isCompleted = true;
+					selectedTodo.isPending = selectedTodo?.isPending;
+					allTodos.push(selectedTodo);
+				}
+			});
+
+			return {
+				...state,
+				todos: [...allTodos],
+				isEdit: false,
+			};
+
+		case CLEAR_ALL_TODO:
+			return {
+				...state,
+				todos: [],
+			};
+
+		default:
+			return state;
+	}
+};
+export default todoReducer;
