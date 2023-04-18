@@ -4,7 +4,7 @@ import { createMemoryHistory, MemoryHistory } from 'history';
 import Header from './../Header';
 import { MemoryRouter, Router } from 'react-router-dom';
 
-const createRouterWrapper = (history: MemoryHistory<unknown>): React.ComponentType => ({ children }) => (
+const createRouterWrapper = (history: MemoryHistory<unknown>): React.ComponentType<any> => ({ children }) => (
 	<Router history={history}>{children}</Router>
 );
 

@@ -23,9 +23,17 @@
   },
   "portsAttributes": {
     "3000": {
-      "label": "Application",
-      "onAutoForward": "openPreview"
+      "label": "Host",
+			"onAutoForward": "ignore",
+			"requireLocalPort": true,
+      "elevateIfNeeded": true
+    },
+		"3001": {
+      "label": "Remote",
+			"onAutoForward": "ignore",
+			"requireLocalPort": true,
+      "elevateIfNeeded": true
     }
   },
-  "forwardPorts": [3000]
+  "forwardPorts": [3000, 3001]
 }

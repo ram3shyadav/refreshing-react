@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import AddTodo from '../components/organisms/AddTodo';
+import TodoLists from '../components/organisms/TodoLists';
 
 class ToDo extends Component {
 	constructor(props: RouteComponentProps<any>) {
@@ -14,8 +15,7 @@ class ToDo extends Component {
 		return (
 			<div>
 				<AddTodo />
-				<h1>Todo Page</h1>
-				<p>This is the about page of my app.</p>
+				<TodoLists />
 			</div>
 		)
 	}
